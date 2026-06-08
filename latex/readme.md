@@ -14,6 +14,40 @@ Wenn Ihnen die Vorlage gefällt, können Sie diesem _Repo einen Stern geben_ - d
 
 ## Werkzeuge, Dateiformat
 
+### Überprüfung mit Regex
+
+Wenn Sie über Regex Ihren Text auf ein paar Regeln überprüfen möchten, können
+Sie dafür das bereitgestellte [`lint.sh`](./tex/scripts/lint.sh) Skript verwenden. Sie können ebenfalls
+`make lint` verwenden, um das Skript ausführen zu lassen. Wichtig: damit das
+Skript funktioniert muss `jq` installiert sein!
+
+Um das Skript sinnvoll verwenden zu können, müssen Sie möglicherweise die Regeln
+anpassen. Dafür müssen Sie die [`rules.json`](./tex/rules.json) Datei bearbeiten. Eine Regel ist
+dabei wiefolgt aufgebaut:
+
+```json
+{
+  "title": "Der Titel",
+  "rule": "Die Regel als Regex. Das landet später in 'grep', daher sollten Sie den Regex-Syntax von 'grep' verwenden!",
+  "args": ["zusätzliche", "Argumente", "für", "grep"],
+  "excludes": ["thesis.tex", "Dateien die ignoriert werden sollen"],
+  "includes": ["rules.json", "Dateien die in jedem Fall überprüft werden sollen"],
+  "mustContain": false
+}
+```
+
+Standardmäßig wird für das `grep` immer `--color=always` sowie `-Eq` bzw. `-En`
+mitgegeben, je nachdem ob `mustContain` auf `true` oder `false` ist. Das Skript
+überprüft auch keine Kommentare, sondern nur Ihre Makros und tatsächlichen Text.
+
+Standardmäßig werden _alle_ Dateien im [`/tex`](./tex) Verzeichnis mit der
+Endung `.tex` überprüft. Das kann durch `excludes` und `includes` entsprechend
+angepasst werden.
+
+Falls Sie eigene Regeln erstellen wollen, schauen Sie sich am Besten die
+Standardregeln in der [`rules.json`](./tex/rules.json) an, da sollten Sie alle
+relevanten Beispiele finden.
+
 ### Lokale Entwicklungsumgebungen
 
 Zum Erzeugen der fertigen Arbeit dienen die Skripte `create` und `clean`. Die .cmd-Version ist für Windows, die .sh für Unix/Linux.
