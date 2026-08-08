@@ -1,0 +1,69 @@
+[
+  {
+    "title": "Keine ungelesenen Markierungen",
+    "rule": "\\\\newcommand\\{\\\\.*marker.*\\}"
+  },
+  {
+    "title": "Titel geändert",
+    "rule": "(Einsatz eines Flux-Kompensators für Zeitreisen mit einer maximalen Höchstgeschwindigkeit von WARP~7)|(Application of a flux compensator for timetravel with a maximum velocity of warp~7)",
+    "excludes": ["*"],
+    "includes": ["docinfo.tex"]
+  },
+  {
+    "title": "Name geändert",
+    "rule": "(hsmaautorvname..Maxxx)|(hsmaautornname..Mustermannn)",
+    "excludes": ["*"],
+    "includes": ["docinfo.tex"]
+  },
+  {
+    "title": "Abgabedatum geändert",
+    "rule": "hsmaabgabedatum..2025-08-08",
+    "excludes": ["*"],
+    "includes": ["docinfo.tex"]
+  },
+  {
+    "title": "Firma geändert",
+    "rule": "hsmafirma..Paukenschlag GmbH, Mannheim",
+    "excludes": ["*"],
+    "includes": ["docinfo.tex"]
+  },
+  {
+    "title": "Betreuer geändert",
+    "rule": "hsmabetreuer..Prof. Peter Mustermannn, Technische Hochschule Mannheim",
+    "excludes": ["*"],
+    "includes": ["docinfo.tex"]
+  },
+  {
+    "title": "Zweitkorrektor geändert",
+    "rule": "hsmazweitkorrektor..Erika Mustermannn, Paukenschlag GmbH",
+    "excludes": ["*"],
+    "includes": ["docinfo.tex"]
+  },
+  {
+    "title": "Verbiete das Wort 'Abschlussarbeit'",
+    "rule": "Abschlussarbeit"
+  },
+  {
+    "title": "Verbiete mehr wie ein Leerzeichen im Text",
+    "rule": "[[:alnum:]_\\.,][\t ]{2,}[[:alnum:]_\\.,]+"
+  },
+  {
+    "title": "Kein Punkt vor dem Zitieren",
+    "rule": "\\. *\\\\autocite\\{.*\\}"
+  },
+  {
+    "title": "Kein Komma vor 'sowie'",
+    "rule": ", *sowie"
+  },
+  {
+    "title": "Immer Komma vor 'sondern'",
+    "rule": "[^,] sondern"
+  },
+  {
+    "title": "Ein Kapitel hat immer ein Chapter",
+    "rule": "\\\\chapter\\{.+\\}",
+    "excludes": ["*"],
+    "includes": ["kapitel*.tex"],
+    "mustContain": true
+  }
+]

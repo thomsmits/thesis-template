@@ -4,7 +4,7 @@ Diese Vorlage ist für Abschlussarbeiten mit LaTeX an der Technischen Hochschule
 
 **Der Titel auf der ersten Seite ist absichtlich nicht zentriert! Er ist so platziert, dass er bei dem [offiziellen Papierumschlag](https://www.tbl.hs-mannheim.de/fileadmin/user_upload/einrichtungen/tbl/1-Dokumente/Deckblatt_Einband_HS_Mannheim.pdf) der Hochschule korrekt in dem Fenster erscheint.** Wenn Sie die Arbeit rein digital abgeben, können Sie durch Setzen der entsprechenden Option in der Datei `thesis.tex` eine digitale Abgabe konfigurieren; dann ist auch der Titel zentriert.
 
-Wenn Sie Probleme haben oder Fehler entdecken, öffnen Sie ein [Issue](https://github.com/informatik-mannheim/thesis-template/issues). Lesen Sie aber vorher diese Anleitung und die [Erklärungen in der Hauptdatei](https://github.com/informatik-mannheim/thesis-template/blob/master/latex/tex/thesis.tex#L1) bis zum Ende, denn vielleicht klärt sich Ihre Frage dann von selbst.
+Wenn Sie Probleme haben oder Fehler entdecken, öffnen Sie ein [Issue](https://github.com/informatik-mannheim/thesis-template/issues). Lesen Sie aber vorher diese Anleitung und die [Erklärungen in der Hauptdatei](https://github.com/informatik-mannheim/thesis-template/blob/main/latex/tex/thesis.tex#L1) bis zum Ende, denn vielleicht klärt sich Ihre Frage dann von selbst.
 
 Verbesserungen können Sie jederzeit als GitHub Pull-Request an uns senden.
 
@@ -13,6 +13,40 @@ Diese Vorlage wurde entwickelt von [Prof. Thomas Smits](http://www.smits-net.de)
 Wenn Ihnen die Vorlage gefällt, können Sie diesem _Repo einen Stern geben_ - dann wissen wir, wer sie benutzt.
 
 ## Werkzeuge, Dateiformat
+
+### Überprüfung mit Regex
+
+Wenn Sie über Regex Ihren Text auf ein paar Regeln überprüfen möchten, können
+Sie dafür das bereitgestellte [`lint.sh`](./tex/scripts/lint.sh) Skript verwenden. Sie können ebenfalls
+`make lint` verwenden, um das Skript ausführen zu lassen. Wichtig: damit das
+Skript funktioniert muss `jq` installiert sein!
+
+Um das Skript sinnvoll verwenden zu können, müssen Sie möglicherweise die Regeln
+anpassen. Dafür müssen Sie die [`rules.json`](./tex/rules.json) Datei bearbeiten. Eine Regel ist
+dabei wiefolgt aufgebaut:
+
+```json
+{
+  "title": "Der Titel",
+  "rule": "Die Regel als Regex. Das landet später in 'grep', daher sollten Sie den Regex-Syntax von 'grep' verwenden!",
+  "args": ["zusätzliche", "Argumente", "für", "grep"],
+  "excludes": ["thesis.tex", "Dateien die ignoriert werden sollen"],
+  "includes": ["rules.json", "Dateien die in jedem Fall überprüft werden sollen"],
+  "mustContain": false
+}
+```
+
+Standardmäßig wird für das `grep` immer `--color=always` sowie `-Eq` bzw. `-En`
+mitgegeben, je nachdem ob `mustContain` auf `true` oder `false` ist. Das Skript
+überprüft auch keine Kommentare, sondern nur Ihre Makros und tatsächlichen Text.
+
+Standardmäßig werden _alle_ Dateien im [`/tex`](./tex) Verzeichnis mit der
+Endung `.tex` überprüft. Das kann durch `excludes` und `includes` entsprechend
+angepasst werden.
+
+Falls Sie eigene Regeln erstellen wollen, schauen Sie sich am Besten die
+Standardregeln in der [`rules.json`](./tex/rules.json) an, da sollten Sie alle
+relevanten Beispiele finden.
 
 ### Lokale Entwicklungsumgebungen
 
@@ -158,7 +192,7 @@ Damit VSCode die thesis.tex als Hauptdatei erkennt, müssen Sie folgende Zeile a
 
 ## LaTeX-Projekt unter Overleaf einrichten
 
- * Laden Sie die ZIP-Version des Projektes [hier](https://github.com/informatik-mannheim/thesis-template/raw/master/latex/thesis-overleaf.zip) herunter.
+ * Laden Sie die ZIP-Version des Projektes [hier](https://github.com/informatik-mannheim/thesis-template/raw/main/latex/thesis-overleaf.zip) herunter.
  * Melden Sie sich bei [Overleaf](https://www.overleaf.com) an und loggen Sie sich ein.
  * Gehen Sie auf "New Project" und wählen Sie "Upload Project"
  * Laden Sie die ZIP-Datei hoch.
