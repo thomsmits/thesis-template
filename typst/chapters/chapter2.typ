@@ -7,61 +7,39 @@
 
 == Hervorhebungen <Hervorhebungen>
 
-Achten Sie bitte auf die grundlegenden Regeln der Typografie #footnote[Ein Ratgeber in allen Detailfragen ist @Forssman2002.], wenn Sie Ihren Text schreiben. Hierzu gehören #zb die Verwendung der richtigen "Anführungszeichen" und der Unterschied zwischen Binde- (-), Gedankenstrich (--) und langem Strich (---). Sie erhalten den Bindestrich in LaTeX mit -, den Gedankenstrich mit -\- und den langen Strich mit -\-\-.
+Achten Sie bitte auf die grundlegenden Regeln der Typografie #footnote[Ein Ratgeber in allen Detailfragen ist @Forssman2002.], wenn Sie Ihren Text schreiben. Hierzu gehören #zb die Verwendung der richtigen "Anführungszeichen" und der Unterschied zwischen Binde- (-), Gedankenstrich (--) und langem Strich (---). Sie erhalten den Bindestrich in Typst mit -, den Gedankenstrich mit -\- und den langen Strich mit -\-\-.
 
-Wenn Sie Text hervorheben wollen, dann setzten Sie ihn mit `\textit` _kursiv_ (Italic) und nicht *fett* (Bold). Fettdruck ist Überschriften vorbehalten; im Fließtext stört er den Lesefluss. Das #underline[Unterstreichen] von Fließtext ist im gesamten Dokument tabu und kann maximal bei Pseudo-Code vorkommen.
+Wenn Sie Text hervorheben wollen, dann setzten Sie ihn mit `_text_` _kursiv_ (Italic) und nicht *fett* (Bold). Fettdruck ist Überschriften vorbehalten; im Fließtext stört er den Lesefluss. Das #underline[Unterstreichen] von Fließtext ist im gesamten Dokument tabu und kann maximal bei Pseudo-Code vorkommen.
 
 == Anführungszeichen
 
-Deutsche Anführungszeichen werden mit \"‘ und \"’ erzeugt: "dieser Text steht in 'Anführungszeichen'; alles klar?". Englische Anführungszeichen hingegen mit ‘‘ und ’’: “this is an ‘English’ quotation”. Beachten Sie, dass Sie in Zitaten immer die zur Sprache passenden Anführungszeichen verwenden. Die Verwendung von \" ist für Anführungszeichen immer falsch und führt bei LaTeX zu seltsamen "Ëffekten".
+Typst unterstützt Unicode, #dh Sie können die korrekten Anführungszeichen einfach in den Text einfügen.
 
-Um sich diesen Ärger zu sparen, bietet sich die Verwendung des Paketes _csquotes_ und des Kommandos `\enquote` an. Hierdurch werden die Anführungszeichen korrekt für die eingestellte Sprache gesetzt und Sie müssen sich "keine Sorgen mehr über die 'Anführungszeichen' machen".
+Die für die Sprache richtigen Anführungszeichen werden werden mit `"` und `'` erzeugt: "dieser Text steht in 'Anführungszeichen'; alles klar?".
+
+Andere Anführungszeichen fügen Sie entsprechend aus dem Unicode ein, #zb “this is an ‘English’ quotation” «Ceci est un texte français». Beachten Sie, dass Sie in Zitaten immer die zur Sprache passenden Anführungszeichen verwenden. 
 
 == Silbentrennung
 
-LaTeX führt eine automatische Silbentrennung durch, sodass Sie sich eigentlich um nichts kümmern müssen. Allerdings werden Wörter, die bereits einen Bindestrich enthalten nicht getrennt, #zb #box[Datenschutz-Grundverordnung]. Wenn Sie Ihren Text auf Deutsch schreiben, können Sie dann alternativ \"= für den Bindestrich im Wort verwenden, #zb \ Datenschutz\"=Grundverordnung, damit LaTeX weiterhin richtig trennt.
-
-Ist die Silbentrennung aus einem anderen Grund nicht erfolgt, #zb weil das Wort nur aus Großbuchstaben besteht, sodass die Zeile über den rechten Rand hinaussteht (Sie bekommen eine _overfull hbox_-Warnung), können Sie LaTeX helfen, indem Sie weitere Trennstellen angeben. Dies geschieht durch \"- als Zeichen, #zb Staats\"-ver\"-trag.
+Typst führt eine automatische Silbentrennung durch, sodass Sie sich eigentlich um nichts kümmern müssen.
 
 == Abkürzungen
 
-Eine #acr("abk") `\gls{abk}` wird bei der ersten Verwendung ausgeschrieben. Danach nicht mehr: #acr("abk"). Man kann allerdings mit `\acrlong{abk}` die Langform explizit anfordern (#acl("abk")) oder mit `\acrshort{abk}` die Kurzform (#acs("abk")) oder mit `\acrfull{abk}` auch noch einmal die Definition (#acrfull("abk")). Wenn Sie eine Abkürzung im Plural verwenden wollen, gibt ihnen `\glspl{isp}` die Möglichkeit (#acrpl("isp")).
+Eine #acr("abk") `#acr("abk") ` wird bei der ersten Verwendung ausgeschrieben. Danach nicht mehr: #acr("abk"). Man kann allerdings mit `#acl("abk")` die Langform explizit anfordern (#acl("abk")) oder mit `#acs("abk")` die Kurzform (#acs("abk")) oder mit `#acrfull("abk")` auch noch einmal die Definition (#acrfull("abk")). Wenn Sie eine Abkürzung im Plural verwenden wollen, gibt ihnen `#acrpl("isp")` die Möglichkeit (#acrpl("isp")).
 
-Das Abkürzungsverzeichnis muss aufgrund der automatischen Sortierung separat kompiliert werden. Der dazugehörige Befehl lautet:
-
-```
-  makeindex -s %.ist -t %.alg -o %.acr %.acn
-```
-
-Beachten Sie, dass bei Abkürzungen, die für zwei Wörter stehen, ein schmales Leerzeichen nach dem Punkt kommt (\\, in LaTeX): #zb bzw. #zb und #dh bzw. #dh. Das Template bietet hierfür die beiden Makros `\zb{}` und `\dahe{}`.
+Beachten Sie, dass bei Abkürzungen, die für zwei Wörter stehen, ein schmales Leerzeichen nach dem Punkt kommt: #zb bzw. #zb und #dh bzw. #dh Das Template bietet hierfür die beiden Makros `#zb` und `#dh`.
 
 == Glossar
 
-Ein Eintrag in dem Glossar kann mithilfe des Befehls `\gls{glos:amplification}` erzeugt werden. Hierbei wird die Begriffserklärung in der Datei `/kapitel/glossar` verwendet und in dem Verzeichnis aufgeführt. Ein Beispiel hierfür wäre: #gls("amplification"). Das Wort Amplification erscheint nun in der Begriffserklärung.
-
-Das Glossar muss aufgrund der automatischen Sortierung separat kompiliert werden. Der dazugehörige Befehl lautet:
-
-```
-  "makeindex.exe" -s %.ist -t %.glg -o %.gls %.glo
-```
-
-== Symbolverzeichnis
-
-Ein Eintrag in dem Symbolverzeichnis kann mithilfe des Befehls `\gls{symb:Pi}` erzeugt werden. Hierbei wird das Symbol in der Datei `/kapitel/symbole` geladen und in dem Verzeichnis aufgeführt. Ein Beispiel hierfür ist: $pi$ und $P$.
-
-Das Symbolverzeichnis muss aufgrund der automatischen Sortierung separat kompiliert werden. Der dazugehörige Befehl lautet:
-
-```
-  "makeindex.exe" -s %.ist -t %.slg -o %.syi %.syg
-```
+Ein Eintrag in dem Glossar kann mithilfe des Befehls `#gls("amplification").` erzeugt werden. Hierbei wird die Begriffserklärung in der Datei `glossary.typ` verwendet und in dem Verzeichnis aufgeführt. Ein Beispiel hierfür wäre: #gls("amplification"). Das Wort Amplification erscheint nun in der Begriffserklärung.
 
 == Querverweise
 
-Querverweise auf eine Kapitelnummer macht man im Text mit `\ref` (@Hervorhebungen) und auf eine bestimmte Seite mit `\pageref` (Seite #pageref(<Hervorhebungen>)). Man kann auch den Befehl `\autoref` benutzen, der automatisch die Art des referenzierten Elements bestimmt (#zb @Hervorhebungen[Abschnitt] oder @Kopplungsformen).
+Querverweise auf eine Kapitelnummer macht man im Text mit `@` (@Hervorhebungen) und auf eine bestimmte Seite mit `#pageref(<Hervorhebungen>)` (Seite #pageref(<Hervorhebungen>)). 
 
 == Fußnoten
 
-Fußnoten werden einfach mit in den Text geschrieben, und zwar genau an die Stelle #footnote[An der die Fußnote auftauchen soll]. Hierzu dient der Befehl `\footnote{Text}`.
+Fußnoten werden einfach mit in den Text geschrieben, und zwar genau an die Stelle #footnote[An der die Fußnote auftauchen soll]. Hierzu dient der Befehl `#footnote[Text]`.
 
 == Tabellen
 
@@ -81,12 +59,14 @@ Tabellen werden normalerweise ohne vertikale Striche gesetzt, sondern die Spalte
 
     table.hline(),
   ),
-  caption: [Lange Tabelle mit ISO-Ländercodes],
+  caption: [Kopplungsformen],
 ) <Kopplungsformen>
 
 Eine Tabelle fließt genauso, wie auch Bilder durch den Text. Siehe @Kopplungsformen.
 
-Manchmal möchte man Tabellen, in denen der Text in der Tabellenspalte umbricht. Hierzu dient die Umgebung `tabularx`, wobei `L` eine Spalte mit Flattersatz und `X` eine mit Blocksatz definiert. Die Breite der Tabelle kann über den Faktor vor `\textwidth` angegeben werden.
+Will man keinen Blocksatz in einer Tabellenzelle, kann man `#set par(justify: false)` verwenden.
+
+#set par(justify: false)
 
 #figure(
   table(
@@ -97,8 +77,8 @@ Manchmal möchte man Tabellen, in denen der Text in der Tabellenspalte umbricht.
     table.hline(stroke: 0.3pt),
 
     [_Praktische Informatik_],
-    [Informatik-Disziplinen, welche sich vorwiegend mit der Entwicklung und Anwendung der Software-Komponenten befassen],
-    [Programmentwicklung, Compilerbau; im Aufbau von #zb Informationssystemen und Netzwerken ergeben sich Überlappungen mit der technischen Informatik],
+    par(justify: false)[Informatik-Disziplinen, welche sich vorwiegend mit der Entwicklung und Anwendung der Software-Komponenten befassen],
+    [#par(justify: false)[Programmentwicklung, Compilerbau; im Aufbau von #zb Informationssystemen und Netzwerken ergeben sich Überlappungen mit der technischen Informatik]],
 
     table.hline(stroke: 0.3pt),
 
@@ -123,7 +103,7 @@ Manchmal möchte man Tabellen, in denen der Text in der Tabellenspalte umbricht.
   caption: [Teildisziplinen der Informatik],
 ) <Teildisziplinen>
 
-Manchmal kommt es vor, dass eine Tabelle so lang wird, dass sie sich über mehr als eine Seite erstreckt. In diesem Fall können Sie das Paket `longtable` verwenden und die Tabelle mit #box[`\begin{longtable}[h]`] definieren. Die Tabelle wird dann _nicht_ in eine `table`-Umgebung eingeschlossen. Siehe hierzu @Laendercodes  @AnhangB.
+#set par(justify: true)
 
 == Harveyballs
 
@@ -184,6 +164,3 @@ Aufzählungen mit eigenen Bezeichnern sind auch toll.
   [Ein abschließender Punkt ohne Unterpunkte],
   numbering: "RQ 1)"
 )
-
-Auch die Auflistung im Fließtext ist sehr wertvoll: a) wichtiger Punkt, b) zweiter wichtiger Punkt und c) der letzte Punkt.
-

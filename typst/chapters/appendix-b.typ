@@ -4,7 +4,7 @@
   table(
     columns: 4,
     table.hline(),
-    [Country], [A 2], [A 3], [Number],
+    table.header(repeat: true,[Country], [A 2], [A 3], [Number]),
     table.hline(stroke: 0.3pt),
 
     [AFGHANISTAN], [AF], [AFG], [004],
@@ -84,4 +84,3 @@
   caption: [Lange Tabelle mit ISO-Ländercodes],
 ) <Laendercodes>
 
-_Beachten Sie, dass die Tabelle manchmal erst nach dreimaligem Lauf durch LaTeX richtig angezeigt wird._

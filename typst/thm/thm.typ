@@ -24,7 +24,7 @@
   // The author's surname.
   author-surname: [Mustermann],
 
-  // The author's givenname.
+  // The author's given name.
   author-given-name: [Max],
 
   // The names of your supervising professors.
@@ -82,7 +82,7 @@
   set page(paper: "a4")
 
   // Set the body font.
-  set text(size: 11pt, font: serif, lang: lang)
+  set text(size: 12pt, font: serif, lang: lang)
 
   let date-format = "[day].[month].[year]"
 
@@ -243,7 +243,7 @@
               Dieses Werk ist lizenziert unter einer #link("https://creativecommons.org/licenses/by-sa/4.0/")[Creative Commons Namensnennung -- Weitergabe unter gleichen Bedingungen 4.0 International Lizenz].
             ]
           ]),
-          align(right, image("images/by-sa.svg", width: 100%)),
+          align(right, image("images/by-sa.svg", width: 90%)),
         )
       ])
     ]
@@ -270,6 +270,7 @@
   show heading.where(level: 2): h => pad(bottom: 1em, top: 1em, text(size: 15pt, h))
   show heading.where(level: 3): h => pad(bottom: 1em, h)
   show heading.where(level: 4): h => text(font: sans, h.body)
+  show heading.where(level: 5): h => text(size: 10pt, font: sans, h.body)
 
   // Abstract in german and english. Omit if proposal.
   if not is-proposal {
@@ -294,7 +295,8 @@
     it.element.location(),
     pad(
       top: 0.5em,
-      text(font: sans, weight: "bold", it.indented(it.prefix(), [#it.body() #h(1fr) #it.page()], gap: 1em))
+      text(font: sans, weight: "bold",
+           it.indented(it.prefix(), [#it.body() #h(1fr) #it.page()], gap: 1em))
     ),
   )
 
