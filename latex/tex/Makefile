@@ -33,6 +33,10 @@ clean:
 	rm -rf $(RESULT_DIR)
 	rm -f $(TEMP_FILES)
 
+.PHONY: lint
+lint:
+		./scripts/lint.sh
+
 ../thesis-overleaf.zip: $(INCLUDES) $(CHAPTERS) thesis.tex
 	rm -f $(TEMP_FILES)
 	rm $@
