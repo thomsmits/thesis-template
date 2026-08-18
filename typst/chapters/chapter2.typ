@@ -1,7 +1,6 @@
 #import "../thm/abbreviations.typ": *
 #import "@preview/acrostiche:0.6.0": acr, acrfull, acs, acl, acrpl
 #import "@preview/glossarium:0.5.10": gls
-#import "../thm/util.typ": pageref
 
 = Typografie
 
@@ -35,7 +34,7 @@ Ein Eintrag in dem Glossar kann mithilfe des Befehls `#gls("amplification").` er
 
 == Querverweise
 
-Querverweise auf eine Kapitelnummer macht man im Text mit `@` (@Hervorhebungen) und auf eine bestimmte Seite mit `#pageref(<Hervorhebungen>)` (Seite #pageref(<Hervorhebungen>)). 
+Querverweise auf eine Kapitelnummer macht man im Text mit `@` (@Hervorhebungen) und auf eine bestimmte Seite mit `#ref(<Hervorhebungen>, form: "page")` (#ref(<Hervorhebungen>, form: "page")).
 
 == Fußnoten
 
