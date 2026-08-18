@@ -18,7 +18,7 @@ Wenn Sie Ihre Arbeit auf Deutsch verfassen, gehen Sie sparsam mit englischen Aus
 
 Wichtig ist das korrekte Zitieren von Quellen, wie es #zb von @Kornmeier2011 dargelegt wird. Interessant ist in diesem Zusammenhang weiterhin der Artikel von @Kramer2009. Häufig werden die Zitate auch in Klammern gesetzt, wie bei @Kornmeier2011 und zusätzlich mit Seitenzahlen versehen @Kornmeier2011[S. 301--303]. Wenn nur zwei aufeinanderfolgende Seiten zitiert werden sollen, kann man `f.` bei mehreren `ff.` verwenden, also im Beispiel von Kornmeier @Kornmeier2011[S. 301 f.] meint dies die Seiten 301 und 302 bzw. @Kornmeier2011[S. 301 ff.] bezieht sich auf mehrere Seiten, die bei 301 beginnen. Generell ist es besser, einen Seitenbereich anzugeben, als `ff.` zu verwenden.
 
-Bei Webseiten wird auch die URL und das Abrufdatum mit angegeben @Gao2017. Wenn die URL nicht korrekt umgebrochen wird, lohnt es sich, an den Parametern _biburl*penalty_ in der `preambel.tex` zu drehen. Kleinere Werte erhöhen die Wahrscheinlichkeit, dass getrennt wird.
+Bei Webseiten wird auch die URL und das Abrufdatum mit angegeben @Gao2017.
 
 Veröffentlichungen in Konferenzbänden werden in sogenannten Inbooks oder Inproceedings veröffentlicht und besitzen meist eine #acr("doi") (#zb @Lang2022).
 
@@ -28,16 +28,15 @@ Verwenden Sie eine einheitliche und im gesamten Dokument konsequent durchgehalte
 
 In der Informatik ist das Zitieren mit Kurzbelegen im Text (Harvard-Zitierweise) weit verbreitet, wobei für das Literaturverzeichnis häufig die Regeln der #acr("acm") oder #acr("ieee") angewandt werden. #footnote[Einen Überblick über viele verschiedene Zitierweisen finden Sie in der http://amath.colorado.edu/documentation/LaTeX/reference/faq/bibstyles.pdf]
 
-Am einfachsten ist es, wenn Sie das `\autocite{}`-Kommando verwenden. Bei diesem Kommando können Sie in der Datei `perambel.tex` festlegen, wie die Zitate generell aussehen sollen, #zb ob sie in Fußnoten erfolgen sollen oder nicht. Wollen Sie von dem globalen Zitierstil abweichen, können Sie weiterhin spezielle Kommandos benutzen:
+Am einfachsten ist es, wenn Sie das `@` oder `#cite`-Kommando verwenden. Bei diesem Kommando können Sie in der Datei `thesis.typ` festlegen, wie die Zitate generell aussehen sollen, #zb ob sie in Fußnoten erfolgen sollen oder nicht. Wollen Sie von dem globalen Zitierstil abweichen, können Sie weiterhin spezielle Kommandos benutzen:
 
-- `\autocite{Willberg2021}`: @Willberg2021
-- `\cite{Willberg2021}`: @Willberg2021
-- `\parencite{Willberg2021}`: @Willberg2021
-- `\footcite{Willberg2021}`: #footnote[@Willberg2021]
-- `\citeauthor{Willberg2021}`: Willberg und Frossmann
-- `\citeauthor*{Willberg2021}`: Willberg #ua
-- `\citetitle{Willberg2021}`: _Wegweiser Schrift: Was passt - was wirkt - was stört?_
-- `\fullcite{Willberg2021}`: #cite(<Willberg2021>, form: "full")
+- `@Willberg2021`: @Willberg2021
+- `#cite(<Willberg2021>`: #cite(<Willberg2021>)
+- `#cite(<Willberg2021>, style: "alphanumeric")`: #cite(<Willberg2021>, style: "alphanumeric")
+- `#cite(<Willberg2021>, style: "chicago-author-date")`: #cite(<Willberg2021>, style: "chicago-author-date")
+- `#footnote[#cite(<Willberg2021>, style: "chicago-author-date")]`: #footnote[#cite(<Willberg2021>, style: "chicago-author-date")]
+- `#cite(<Willberg2021>, form: "author")`: #cite(<Willberg2021>, form: "author")
+- `#cite(<Willberg2021>, form: "full", style: "chicago-author-date")`: #cite(<Willberg2021>, form: "full", style: "chicago-author-date")
 
 Denken Sie daran, dass das Übernehmen einer fremden Textstelle ohne entsprechenden Hinweis auf die Herkunft in wissenschaftlichen Arbeiten nicht akzeptabel ist und dazu führen kann, dass die Arbeit nicht anerkannt wird. Plagiate werden mit mangelhaft (5,0) bewertet und können weitere rechtliche Schritte nach sich ziehen.
 
@@ -57,15 +56,17 @@ Wikipedia stellt einen immensen Wissensfundus dar und enthält zu vielen Themen 
 
 == Gliederung: Zweite Ebene
 
-Die Gliederung im Inhaltsverzeichnis erfolgt mit Kapiteln ```tex \chapter{Titel}```, Abschnitten ```tex \section{Titel}```, Unterabschnitten ```tex \subsection{Titel}```.
+Die Gliederung im Inhaltsverzeichnis erfolgt mit Kapiteln `= Titel`, Abschnitten `== Titel`, Unterabschnitten `=== Titel`.
 
-Zusätzlich können noch Unterunterabschnitte ```tex \subsubsection{Titel}``` und Absätze ```tex \paragraph{Titel}``` verwendet werden. Damit kommt man auf maximal fünf Ebenen; für eine Abschlussarbeit mehr als ausreichend.
+Zusätzlich können noch Unterunterabschnitte `==== Titel` und Absätze `===== Titel` verwendet werden. Damit kommt man auf maximal fünf Ebenen; für eine Abschlussarbeit mehr als ausreichend.
 
-Auf jeder Ebene sollten Sie erläutern, was in den darunter liegenden Ebene beschrieben wird, sodass im Normalfall keine Gliederungsebene leer ist und nur aus Untereinheiten besteht. Im Folgenden zeigt dieses Template, wie man weitere Ebenen mit LaTeX erzeugt.
+Auf jeder Ebene sollten Sie erläutern, was in den darunter liegenden Ebene beschrieben wird, sodass im Normalfall keine Gliederungsebene leer ist und nur aus Untereinheiten besteht. Im Folgenden zeigt dieses Template, wie man weitere Ebenen mit Typst erzeugt.
 
 === Gliederung: Dritte Ebene
 
-==== _Gliederung: Vierte Ebene_
+==== Gliederung: Vierte Ebene
 
-==== Gliederung: Fünfte Ebene
+===== Gliederung: Fünfte Ebene
+Dies ist ein Text, der direkt hinter der Absatzüberschrift steht.
+
 Anders als in diesem Beispiel darf in Ihrer Arbeit kein Gliederungspunkt auf seiner Ebene alleine stehen. #Dh wenn es ein 1.1 gibt, muss es auch ein 1.2 geben.
