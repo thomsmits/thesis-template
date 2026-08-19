@@ -1,6 +1,8 @@
-#import "../thm/abbreviations.typ": *
-#import "@preview/acrostiche:0.6.0": acr, acrfull, acs, acl, acrpl
+#import "@preview/acrostiche:0.7.0": acr, acrfull, acs, acl, acrpl, init-acronyms
 #import "@preview/glossarium:0.5.10": gls
+#import "../thm/abbreviations.typ": *
+#import "../acronyms.typ": acronyms
+#init-acronyms(acronyms)
 
 = Typografie
 

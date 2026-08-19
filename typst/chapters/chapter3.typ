@@ -1,4 +1,8 @@
+#import "@preview/acrostiche:0.7.0": acr, acrfull, acs, acl, acrpl, init-acronyms
+#import "../thm/snowcards.typ": *
 #import "../thm/abbreviations.typ": *
+#import "../acronyms.typ": acronyms
+#init-acronyms(acronyms)
 
 = Einbinden von Grafiken, Sourcecode und Anforderungen
 
@@ -53,3 +57,40 @@ protected void checkKey(Key key) throws CrypterException {
 Mitten im Text kann man Source mit \` einschließen: `checkKey`-Methode.
 
 == Anforderungen
+
+Anforderungen im Format des Volere-Templates (Snowcards) @Volere können per `snowcard()` Funktion eingefügt werden.
+
+#snowcard(
+  "F",
+  "Benutzerauthentifzierung",
+  "Der Benutzer ist in der Lage sich über seinen Benutzernamen und sein Passwort am System anzumelden",
+  "Authentifizierung ist grundlegend notwendig, um die Schutzziele der Anwendung, insbesondere Vertraulichkeit und Integrität, zu erreichen.",
+  "Interview mit dem Abteilungslieter",
+  "Ein Benutzer kann sich mit seinem firmenweiten Benutzernamen und Passwort über die Anmeldemaske anmelden und hat Zugriff auf die Funktionen des Systems",
+   "Hoch",
+  "F12",
+  "Benutzerhandbuch des Altsystems",
+) <Auth1>
+
+#snowcard(
+  "F",
+  "Benutzerauthentifzierung 2",
+  "Der Benutzer ist in der Lage sich über seinen Benutzernamen und sein Passwort am System anzumelden",
+  "Authentifizierung ist grundlegend notwendig, um die Schutzziele der Anwendung, insbesondere Vertraulichkeit und Integrität, zu erreichen.",
+  "Interview mit dem Abteilungslieter",
+  "Ein Benutzer kann sich mit seinem firmenweiten Benutzernamen und Passwort über die Anmeldemaske anmelden und hat Zugriff auf die Funktionen des Systems",
+   "Hoch",
+  "F12",
+  "Benutzerhandbuch des Altsystems",
+) <Auth2>
+
+#set text(size: 10pt, font: "TeX Gyre Heros")
+#set par(justify: false)
+
+#figure(
+  context snowcardOverview(),
+  kind: table,
+  caption: [An overview of all requirements],
+) <ReqOverview>
+
+

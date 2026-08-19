@@ -11,6 +11,7 @@
   author-given-name: "Max",
   abstract-de: abstract-de,
   abstract-en: abstract-en,
+  course-of-study: "CSB",
   reviewers: ("Prof. Peter Mustermann, Technische Hochschule Mannheim",),
   advisors: ("Erika Mustermann, Paukenschlag GmbH",),
   lang: "de",
@@ -19,6 +20,12 @@
   acronyms: acronyms,
   appendix: appendix,
   signature: image("images/unterschrift.png"),
+  llm-notice: ( 
+    "Textkorrekturen", 
+    "Vorschläge für Formulierungen",
+    "Kaffeekochen"
+  ),
+  use-llm-notice: true,
 )
 
 #include "chapters/chapter1.typ"
