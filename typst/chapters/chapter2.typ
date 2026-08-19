@@ -2,7 +2,6 @@
 #import "@preview/glossarium:0.5.10": gls
 #import "../thm/abbreviations.typ": *
 #import "../acronyms.typ": acronyms
-#init-acronyms(acronyms)
 
 = Typografie
 
@@ -18,7 +17,7 @@ Typst unterstützt Unicode, #dh Sie können die korrekten Anführungszeichen ein
 
 Die für die Sprache richtigen Anführungszeichen werden werden mit `"` und `'` erzeugt: "dieser Text steht in 'Anführungszeichen'; alles klar?".
 
-Andere Anführungszeichen fügen Sie entsprechend aus dem Unicode ein, #zb “this is an ‘English’ quotation” «Ceci est un texte français». Beachten Sie, dass Sie in Zitaten immer die zur Sprache passenden Anführungszeichen verwenden. 
+Andere Anführungszeichen fügen Sie entsprechend aus dem Unicode ein, #zb “this is an ‘English’ quotation” «Ceci est un texte français». Beachten Sie, dass Sie in Zitaten immer die zur Sprache passenden Anführungszeichen verwenden.
 
 == Silbentrennung
 

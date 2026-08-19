@@ -15,14 +15,14 @@
 
     let is-en = lang == "en"
 
-    let sc-requirement = "Nr."  
+    let sc-requirement = "Nr."
     let sc-type = "Typ"
     let sc-title = "Titel"
     let sc-description = "Beschreinung"
     let sc-rationale = "Begründung"
     let sc-originator = "Herkunft"
     let sc-fit-criterion = "Fit-Kriterium"
-    let sc-satisfaction = "Zufriedenheit" 
+    let sc-satisfaction = "Zufriedenheit"
     let sc-dissatisfaction = "Unzufriedenheit"
     let sc-priority = "Priorität"
     let sc-affects = "Beeinflusst"
@@ -36,7 +36,7 @@
       sc-rationale = "Rationale"
       sc-originator = "Originator"
       sc-fit-criterion = "Fit Criterion"
-      sc-satisfaction = "Customer Satisfaction" 
+      sc-satisfaction = "Customer Satisfaction"
       sc-dissatisfaction = "Customer Dissatisfaction"
       sc-priority = "Priority"
       sc-affects = "Conflict"
@@ -82,7 +82,7 @@
   // Find every snowcard figure in the entire document
   let cards = query(figure.where(kind: "snowcard"))
 
-  context { 
+  context {
     let lang = text.lang
     let sc-tbl-title = "Titel"
 
@@ -110,9 +110,9 @@
       inset: 0.4em,
       table.header(
         "#", sc-tbl-title,
-        table.hline(y: 1)
+        table.hline(y: 1),
       ),
-      ..tableRows
+      ..tableRows,
     )
   }
 }

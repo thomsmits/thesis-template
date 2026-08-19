@@ -22,7 +22,7 @@ nur von begrenztem Wert.
 ## Struktur des Repositories
 
 * [`latex`](latex): Ein LaTeX-Template für Abschlussarbeiten
-* [`typst`](typst): Eine [Typst](https://typst.app)-Version des LaTeX-Templates, entwickelt von [Michael Pochtar](https://github.com/michael-pochtar)
+* [`typst`](typst): Eine [Typst](https://typst.app)-Version des LaTeX-Templates, entwickelt von [Michael Pochtar](https://github.com/michael-pochtar) und erweitert von [Jacob Mayer](https://github.com/segelnhoch3)
 * [`lyx`](lyx): Eine [LyX](http://www.lyx.org)-Version des LaTeX-Templates
 
 Die [LaTeX-Version](latex) ist die am besten gepflegte Vorlage. Die LyX-Version hinkt etwas hinterher.
