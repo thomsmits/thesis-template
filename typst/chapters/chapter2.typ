@@ -3,7 +3,6 @@
 #import "../thm/abbreviations.typ": *
 #import "../acronyms.typ": acronyms
 #import "../thm/util.typ": pageref
-#init-acronyms(acronyms)
 
 = Typografie
 
@@ -19,7 +18,7 @@ Typst unterstützt Unicode, #dh Sie können die korrekten Anführungszeichen ein
 
 Die für die Sprache richtigen Anführungszeichen werden werden mit `"` und `'` erzeugt: "dieser Text steht in 'Anführungszeichen'; alles klar?".
 
-Andere Anführungszeichen fügen Sie entsprechend aus dem Unicode ein, #zb “this is an ‘English’ quotation” «Ceci est un texte français». Beachten Sie, dass Sie in Zitaten immer die zur Sprache passenden Anführungszeichen verwenden. 
+Andere Anführungszeichen fügen Sie entsprechend aus dem Unicode ein, #zb “this is an ‘English’ quotation” «Ceci est un texte français». Beachten Sie, dass Sie in Zitaten immer die zur Sprache passenden Anführungszeichen verwenden.
 
 == Silbentrennung
 
@@ -37,7 +36,7 @@ Ein Eintrag in dem Glossar kann mithilfe des Befehls `#gls("amplification").` er
 
 == Querverweise
 
-Querverweise auf eine Kapitelnummer macht man im Text mit `@` (@Hervorhebungen) und auf eine bestimmte Seite mit `#pageref(<Hervorhebungen>)` (Seite #pageref(<Hervorhebungen>)). 
+Querverweise auf eine Kapitelnummer macht man im Text mit `@` (@Hervorhebungen) und auf eine bestimmte Seite mit `#pageref(<Hervorhebungen>)` (Seite #pageref(<Hervorhebungen>)).
 
 == Fußnoten
 
