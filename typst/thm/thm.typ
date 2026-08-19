@@ -97,6 +97,10 @@
   // No page numbering until abstract.
   set page(numbering: none)
 
+  //  Fix footnote style
+  set footnote.entry(indent: 0pt)
+  set footnote.entry(gap: 0.6em)
+
   // Configure enum numbering scheme.
   set enum(indent: 1em, spacing: 1em, numbering: (..n) => {
     // For the first level we use numbers 1, 2, 3, ...
@@ -301,6 +305,7 @@
   show heading.where(level: 3): h => pad(bottom: 1em, h)
   show heading.where(level: 4): h => text(font: sans, h.body)
   show heading.where(level: 5): h => text(size: 10pt, font: sans, h.body)
+
 
   // Abstract in german and english. Omit if proposal.
   if not is-proposal {
