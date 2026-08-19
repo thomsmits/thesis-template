@@ -1,5 +1,7 @@
+#import "@preview/acrostiche:0.7.0": acr, acrfull, acs, acl, acrpl, init-acronyms
 #import "../thm/abbreviations.typ": *
-#import "@preview/acrostiche:0.6.0": acr
+#import "../acronyms.typ": acronyms
+#init-acronyms(acronyms)
 
 = Schreibstil
 

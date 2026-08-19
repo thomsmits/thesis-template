@@ -1,5 +1,8 @@
-#import "../thm/abbreviations.typ": *
+#import "@preview/acrostiche:0.7.0": acr, acrfull, acs, acl, acrpl, init-acronyms
 #import "../thm/snowcards.typ": *
+#import "../thm/abbreviations.typ": *
+#import "../acronyms.typ": acronyms
+#init-acronyms(acronyms)
 
 = Einbinden von Grafiken, Sourcecode und Anforderungen
 
