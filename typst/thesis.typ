@@ -19,6 +19,12 @@
   acronyms: acronyms,
   appendix: appendix,
   signature: image("images/unterschrift.png"),
+  llm-notice: ( 
+    "Textkorrekturen", 
+    "Vorschläge für Formulierungen",
+    "Kaffeekochen"
+  ),
+  use-llm-notice: true,
 )
 
 #include "chapters/chapter1.typ"

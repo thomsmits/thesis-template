@@ -1,6 +1,7 @@
 #import "@preview/glossarium:0.5.10": make-glossary, print-glossary, register-glossary, gls
-#import "@preview/acrostiche:0.6.0": init-acronyms, print-index
+#import "@preview/acrostiche:0.6.0": init-acronyms, print-index, acr
 #import "thm-helpers.typ": *
+#import "snowcards.typ": *
 
 // This function gets your whole document as its `body` and formats it as
 // a thesis in the style of the University of Applied Sciences Mannheim.
@@ -50,6 +51,12 @@
   // without much copy-pasting or restructuring. The template does it for you.
   is-proposal: false,
 
+  //toggle to include LLM notice
+  use-llm-notice: false,
+
+  //content of the LLm notice
+  llm-notice: "",
+
   // Your bibliography. Pass `bibliography("your_refs.bib")`.
   bibliography: none,
 
@@ -70,6 +77,7 @@
 ) = {
 
   let is-en = lang == "en"
+
   let sans = "TeX Gyre Heros"
   let serif = "TeX Gyre Termes"
 
@@ -104,11 +112,13 @@
   set list(indent: 1em, spacing: 1em, marker: ([•], [*–*]))
 
   // Tables & figures
+  // to have a line separating the header and content, include a table.hline (y: 1)
+  // in the header definition after the actual headers
   set figure(gap: 1.5em)
   show figure.caption: set text(font: sans, size: 9pt)
   show figure.where(kind: table): set figure.caption(position: top)
   show figure: set block(breakable: true)
-  set table(stroke: none, align: left)
+  set table(stroke: none, align: left, inset: (x: 5pt, y: 8pt))
 
   // Configure quotes.
   set quote(block: true)
@@ -223,6 +233,26 @@
 
       #author-given-name #author-surname
 
+      #if use-llm-notice [
+      #place(horizon, [
+        #if is-en [
+          #text(size: 20pt, font: sans, strong("Notice on the use of LLM tools")) \
+
+          This thesis was created with assistance from Large Language Model tools. All content produced by these tools was reviewed and edited by the author. Specifically, LLMs were used for the following tasks:
+        ] else [
+          #text(size: 20pt, font: sans, strong("Hinweis zur Nutzung von LLM-Werkzeugen")) \
+
+        Diese Arbeit wurde unter Zuhilfenahme von Large-Language-Models erstellt. Alle von diesen Tools erzeugten Inhalte wurden von der Autorin bzw. dem Autor überprüft und bearbeitet. Insbesondere wurden LLMs für die folgenden Aufgaben eingesetzt:
+        ]
+
+        #for item in llm-notice [
+        - #item
+        ]
+
+
+        ])
+      ]
+
       #place(bottom, [
         #if is-en [
           I agree that my work may be published, i.e. that the work may be stored electronically, converted into other formats,
@@ -309,9 +339,9 @@
   }
 
   // Print acronyms.
-  if acronyms != none {
+  if acronyms != none and not is-proposal {
     let title = if lang == "de" [Abkürzungsverzeichnis] else [Acronyms Index]
-    print-index(delimiter: "", title: title, clickable: false, row-gutter: 1em, outlined: true)
+    print-index(delimiter: "", title: title, clickable: false, row-gutter: 1em, outlined: true, sorted: "up")
   }
 
   // Change the outline styling for figures, tables and listings.
@@ -324,7 +354,7 @@
   // Print the list of figures if it's not empty. The context block enables us to react to the
   // number of images present in the document. See https://typst.app/docs/reference/context/.
   context {
-    if counter(figure.where(kind: image)).final().at(0) > 0 {
+    if counter(figure.where(kind: image)).final().at(0) > 0 and not is-proposal {
       let title = if lang == "de" [Abbildungsverzeichnis] else [List of Figures]
       outline(indent: auto, title: title, target: figure.where(kind: image))
     }
@@ -332,7 +362,7 @@
 
   // Print the list of tables if it's not empty.
   context {
-    if counter(figure.where(kind: table)).final().at(0) > 0 {
+    if counter(figure.where(kind: table)).final().at(0) > 0 and not is-proposal {
       let title = if lang == "de" [Tabellenverzeichnis] else [List of Tables]
       outline(indent: auto, title: title, target: figure.where(kind: table))
     }
@@ -344,7 +374,7 @@
 
   // Print the list of listings if it's not empty.
   context {
-    if counter(figure.where(kind: raw)).final().at(0) > 0 {
+    if counter(figure.where(kind: raw)).final().at(0) > 0 and not is-proposal {
       let title = if lang == "de" [Quellcodeverzeichnis] else [List of Listings]
       outline(indent: auto, title: title, target: figure.where(kind: raw))
     }
@@ -420,8 +450,8 @@
   // Print glossary on a new page.
   if glossary != none {
     pagebreak(weak: true)
-    [= Glossar]
-    print-glossary(glossary)
+    if is-en [= Glossary] else [= Glossar]
+    print-glossary(glossary, deduplicate-back-references: true)
   }
 
   // Print bibliography.
