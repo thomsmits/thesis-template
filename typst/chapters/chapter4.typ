@@ -2,7 +2,6 @@
 #import "@preview/glossarium:0.5.10": gls
 #import "../thm/abbreviations.typ": *
 #import "../acronyms.typ": acronyms
-#import "../thm/util.typ": pageref
 
 = Checkliste
 
