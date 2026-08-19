@@ -11,6 +11,7 @@
   author-given-name: "Max",
   abstract-de: abstract-de,
   abstract-en: abstract-en,
+  course-of-study: "CSB",
   reviewers: ("Prof. Peter Mustermann, Technische Hochschule Mannheim",),
   advisors: ("Erika Mustermann, Paukenschlag GmbH",),
   lang: "de",
