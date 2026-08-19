@@ -1,5 +1,5 @@
 #import "@preview/glossarium:0.5.10": make-glossary, print-glossary, register-glossary, gls
-#import "@preview/acrostiche:0.6.0": init-acronyms, print-index, acr
+#import "@preview/acrostiche:0.7.0": init-acronyms, print-index, acr
 #import "thm-helpers.typ": *
 #import "snowcards.typ": *
 
