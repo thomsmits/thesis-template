@@ -1,5 +1,5 @@
-#import "@preview/glossarium:0.5.10": make-glossary, print-glossary, register-glossary, gls
-#import "@preview/acrostiche:0.7.0": init-acronyms, print-index, acr
+#import "@preview/glossarium:0.5.10": gls, make-glossary, print-glossary, register-glossary
+#import "@preview/acrostiche:0.7.0": acr, init-acronyms, print-index
 #import "thm-helpers.typ": *
 #import "snowcards.typ": *
 
@@ -10,7 +10,7 @@
   // The english title of the thesis.
   title-en: [Title of the Thesis],
 
-  // The german title of the thesis.
+  // The German title of the thesis.
   title-de: [Titel der Thesis],
 
   // Language of the thesis ("de" or "en").
@@ -73,9 +73,8 @@
   signature: none,
 
   // The content of your thesis.
-  body
+  body,
 ) = {
-
   let is-en = lang == "en"
 
   let sans = "TeX Gyre Heros"
@@ -102,14 +101,19 @@
   set footnote.entry(gap: 0.6em)
 
   // Configure enum numbering scheme.
-  set enum(indent: 1em, spacing: 1em, numbering: (..n) => {
-    // For the first level we use numbers 1, 2, 3, ...
-    // On the second level we use letters a), b), c), ...
-    let level = n.pos().len() - 1
-    let pattern = "1a".at(level, default: "a")
-    let suffix = ".)".at(level, default: ")")
-    numbering(pattern, n.pos().last()) + suffix
-  }, full: true)
+  set enum(
+    indent: 1em,
+    spacing: 1em,
+    numbering: (..n) => {
+      // For the first level we use numbers 1, 2, 3, ...
+      // On the second level we use letters a), b), c), ...
+      let level = n.pos().len() - 1
+      let pattern = "1a".at(level, default: "a")
+      let suffix = ".)".at(level, default: ")")
+      numbering(pattern, n.pos().last()) + suffix
+    },
+    full: true,
+  )
 
   // Configure unnumbered list. For the first level
   // we use dots and dashes for the second level.
@@ -143,21 +147,21 @@
         bottom: 2.5em,
         left: 5em,
         right: 5em,
-        text(font: sans, size: 17pt, hyphenate: false, strong(title))
+        text(font: sans, size: 17pt, hyphenate: false, strong(title)),
       )
 
       #author-given-name #author-surname
 
       #if is-en {
-          pad(top: 3.5em, [#course-of-study.type-en #if is-proposal [ Proposal ]])
-          text(size: 11pt, [for the acquisition of the academic degree #course-of-study.degree])
-          parbreak()
-          [Course of Studies: #course-of-study.at(lang)]
+        pad(top: 3.5em, [#course-of-study.type-en #if is-proposal [ Proposal ]])
+        text(size: 11pt, [for the acquisition of the academic degree #course-of-study.degree])
+        parbreak()
+        [Course of Studies: #course-of-study.at(lang)]
       } else {
-          pad(top: 3.5em, [#course-of-study.type-de #if is-proposal [ Exposé ]])
-          text(size: 11pt, [zur Erlangung des akademischen Grades #course-of-study.degree])
-          parbreak()
-          [Studiengang #course-of-study.at(lang)]
+        pad(top: 3.5em, [#course-of-study.type-de #if is-proposal [ Exposé ]])
+        text(size: 11pt, [zur Erlangung des akademischen Grades #course-of-study.degree])
+        parbreak()
+        [Studiengang #course-of-study.at(lang)]
       }
 
       #pad(top: 2em, bottom: 2em, [
@@ -238,20 +242,20 @@
       #author-given-name #author-surname
 
       #if use-llm-notice [
-      #place(horizon, [
-        #if is-en [
-          #text(size: 20pt, font: sans, strong("Notice on the use of LLM tools")) \
+        #place(horizon, [
+          #if is-en [
+            #text(size: 20pt, font: sans, strong("Notice on the use of LLM tools")) \
 
-          This thesis was created with assistance from Large Language Model tools. All content produced by these tools was reviewed and edited by the author. Specifically, LLMs were used for the following tasks:
-        ] else [
-          #text(size: 20pt, font: sans, strong("Hinweis zur Nutzung von LLM-Werkzeugen")) \
+            This thesis was created with assistance from Large Language Model tools. All content produced by these tools was reviewed and edited by the author. Specifically, LLMs were used for the following tasks:
+          ] else [
+            #text(size: 20pt, font: sans, strong("Hinweis zur Nutzung von LLM-Werkzeugen")) \
 
-        Diese Arbeit wurde unter Zuhilfenahme von Large-Language-Models erstellt. Alle von diesen Tools erzeugten Inhalte wurden von der Autorin bzw. dem Autor überprüft und bearbeitet. Insbesondere wurden LLMs für die folgenden Aufgaben eingesetzt:
-        ]
+            Diese Arbeit wurde unter Zuhilfenahme von Large-Language-Models erstellt. Alle von diesen Tools erzeugten Inhalte wurden von der Autorin bzw. dem Autor überprüft und bearbeitet. Insbesondere wurden LLMs für die folgenden Aufgaben eingesetzt:
+          ]
 
-        #for item in llm-notice [
-        - #item
-        ]
+          #for item in llm-notice [
+            - #item
+          ]
 
 
         ])
@@ -306,7 +310,6 @@
   show heading.where(level: 4): h => text(font: sans, h.body)
   show heading.where(level: 5): h => text(size: 10pt, font: sans, h.body)
 
-
   // Abstract in german and english. Omit if proposal.
   if not is-proposal {
     text(size: 20pt, font: sans, strong([Abstrakt]))
@@ -330,8 +333,7 @@
     it.element.location(),
     pad(
       top: 0.5em,
-      text(font: sans, weight: "bold",
-           it.indented(it.prefix(), [#it.body() #h(1fr) #it.page()], gap: 1em))
+      text(font: sans, weight: "bold", it.indented(it.prefix(), [#it.body() #h(1fr) #it.page()], gap: 1em)),
     ),
   )
 
@@ -351,8 +353,8 @@
 
   // Change the outline styling for figures, tables and listings.
   show outline.entry: it => link(
-      it.element.location(),
-      it.indented(it.prefix(), it.inner()),
+    it.element.location(),
+    it.indented(it.prefix(), it.inner()),
   )
   show outline: set heading(outlined: true)
 
@@ -398,8 +400,7 @@
         let headings-on-page = query(heading)
           .filter(h => h.level < 3 and h.location().page() == current-page)
           .sorted(key: h => h.level)
-        let headings-before-page = query(heading)
-          .filter(h => h.level < 3 and h.location().page() < current-page)
+        let headings-before-page = query(heading).filter(h => h.level < 3 and h.location().page() < current-page)
 
         let h = none
         if headings-on-page.len() > 0 {

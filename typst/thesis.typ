@@ -20,10 +20,10 @@
   acronyms: acronyms,
   appendix: appendix,
   signature: image("images/unterschrift.png"),
-  llm-notice: ( 
-    "Textkorrekturen", 
+  llm-notice: (
+    "Textkorrekturen",
     "Vorschläge für Formulierungen",
-    "Kaffeekochen"
+    "Kaffeekochen",
   ),
   use-llm-notice: true,
 )
